@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+        //maven {
+          //  url "https://oss.sonatype.org/content/repositories/snapshots"
+        //}
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-beta03'
+
+        // Butterknife for AndroidX
+        //classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+
+        // Firebase
+        classpath 'com.google.gms:google-services:4.0.0'
+
+        // Crashlytics
+        classpath 'io.fabric.tools:gradle:1.25.4'
+
+        // Jetpack Navigation Safe args
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha03"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+        }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
