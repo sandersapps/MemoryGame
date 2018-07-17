@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case DECLINED: {
-                bottomNavigationView.setVisibility(View.INVISIBLE);
+                bottomNavigationView.setVisibility(View.GONE);
                 break;
             }
         }

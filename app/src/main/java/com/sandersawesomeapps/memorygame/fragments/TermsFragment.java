@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.sandersawesomeapps.memorygame.R;
 import com.sandersawesomeapps.memorygame.data.TermsState;
 import com.sandersawesomeapps.memorygame.data.TermsStateRepository;
+import com.sandersawesomeapps.memorygame.util.ExceptionHandling;
 import com.sandersawesomeapps.memorygame.viewmodels.TermsViewModel;
 
 import androidx.annotation.NonNull;
@@ -49,6 +51,8 @@ public class TermsFragment extends Fragment {
     @OnClick(R.id.agree_button)
     void agreeButton() {
         termsViewModel.setTermsState(TermsState.ACCEPTED);
+        ExceptionHandling.enableCrashReporting(requireContext());
+        FirebaseAnalytics.getInstance(requireContext()).setAnalyticsCollectionEnabled(true);
         NavHostFragment.findNavController(this).popBackStack();
     }
 }

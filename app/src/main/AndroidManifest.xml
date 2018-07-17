@@ -21,6 +21,9 @@
 
         <!-- Disable Crashlytics until enabled in the TermsFragment -->
         <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+
+        <!-- Disable Analytics until enabled in the TermsFragment -->
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
     </application>
 
 </manifest>
