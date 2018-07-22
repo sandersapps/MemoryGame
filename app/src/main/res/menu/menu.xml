@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@id/newGame"
+            android:id="@id/game"
             android:icon="@drawable/ic_videogame_asset_black_24dp"
             android:title="@string/fragment_new_game" />
         <item

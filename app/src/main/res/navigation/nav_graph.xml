@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/newGame">
-
-    <fragment
-        android:id="@+id/newGame"
-        android:name="com.sandersawesomeapps.memorygame.fragments.NewGameFragment"
-        android:label="NewGame" >
-        <action
-            android:id="@+id/action_newGame_to_game"
-            app:destination="@id/game" />
-    </fragment>
+    app:startDestination="@id/game">
     <fragment
         android:id="@+id/termsFragment"
         android:name="com.sandersawesomeapps.memorygame.fragments.TermsFragment"
@@ -22,7 +13,7 @@
         <action
             android:id="@+id/action_game_to_highscores"
             app:destination="@id/highscores"
-            app:popUpTo="@+id/newGame" />
+            app:popUpTo="@+id/game" />
     </fragment>
     <fragment
         android:id="@+id/settings"

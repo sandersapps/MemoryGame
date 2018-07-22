@@ -1,5 +1,6 @@
 package com.sandersawesomeapps.memorygame;
 
+import android.content.Context;
 import android.content.ContextWrapper;
 
 import com.pixplicity.easyprefs.library.Prefs;

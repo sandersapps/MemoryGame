@@ -7,6 +7,22 @@
     <string name="fragment_terms">Terms &amp; Conditions</string>
     <string name="fragment_high_scores">High Scores</string>
 
+    <string name="state_start">Start a new game</string>
+    <string name="state_player_1_first">Player 1: first flip</string>
+    <string name="state_player_1_second">Player 1: second flip</string>
+    <string name="state_player_1_end">Player 1: end of turn</string>
+    <string name="state_player_2_first">Player 2: first flip</string>
+    <string name="state_player_2_second">Player 2: second flip</string>
+    <string name="state_player_2_end">Player 2: end of turn</string>
+    <string name="state_player_1_won">Player 1 won the game</string>
+    <string name="state_player_2_won">Player 2 won the game</string>
+
+    <string name="game_button_new">New Game</string>
+    <string name="game_button_next_turn">Next Turn</string>
+    <string name="game_button_finish">Finish Game</string>
+    <string name="game_player_1">Player 1</string>
+    <string name="game_player_2">Player 2</string>
+
     <string name="terms_agree_button">Agree</string>
     <string name="terms_title">Terms, Conditions &amp; Privacy</string>
     <string name="terms_description">By using this app you agree to the usage of Firebase Analytics, Firebase Crashlytics and Firebase Firestore. Although we won\'t be able to trace any information back to a natural person, Google might be able to do so. \n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
