@@ -15,7 +15,6 @@ import butterknife.Unbinder;
 
 public class SettingsFragment extends BaseFragment {
 
-
     private Unbinder unbinder;
 
     @Nullable

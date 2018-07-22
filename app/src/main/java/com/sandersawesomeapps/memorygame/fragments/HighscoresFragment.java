@@ -15,7 +15,6 @@ import butterknife.Unbinder;
 
 public class HighscoresFragment extends BaseFragment {
 
-
     private Unbinder unbinder;
 
     @Nullable

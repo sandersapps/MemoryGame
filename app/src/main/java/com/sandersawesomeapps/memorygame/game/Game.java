@@ -7,33 +7,75 @@ import java.util.Random;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+/**
+ * This is the actual game. The game uses {@link #state} to determine what state the game is currently
+ * in. To keep the game in a valid state all functions which alter the state are synchronized. If
+ * the game somehow ends up in an illegal state it will throw an IllegalStateException.
+ *
+ * The cards of the memory game are stored in {@link #tiles}. Each {@link Tile} has a state of it's
+ * own.
+ */
 public class Game {
 
+    /**
+     * The current State of the game.
+     */
     private MutableLiveData<State> state;
 
+    /**
+     * The tiles of the game.
+     */
     private MutableLiveData<ArrayList<Tile>> tiles;
 
+    /**
+     * The current difficulty.
+     */
     private Difficulty difficulty;
 
+    /**
+     * Remembers the position of the first pick of the current turn. Returns a value of -1 if no
+     * tile has been picked yet.
+     */
     private int firstTile;
 
+    /**
+     * Remembers the position of the second pick of the current turn. Returns a value of -1 if no
+     * tile has been picked yet.
+     */
     private int secondTile;
 
+    /**
+     * Constructor to create a new empty Game.
+     */
     public Game() {
+        firstTile = -1;
+        secondTile = -1;
         state = new MutableLiveData<>();
         state.setValue(State.START);
         tiles = new MutableLiveData<>();
     }
 
+    /**
+     * Returs the current state of the game.
+     * @return
+     */
     public LiveData<State> getGameState() {
         return state;
     }
 
+    /**
+     * Returns the current tiles of the game.
+     * @return
+     */
     public LiveData<ArrayList<Tile>> getTiles() {
         return tiles;
     }
 
-    public void startNewGame(Difficulty difficulty) {
+    /**
+     * Starts a new game for the given difficulty.
+     * @param difficulty
+     */
+    public synchronized void startNewGame(Difficulty difficulty) {
         this.difficulty = difficulty;
 
         // create new tiles and shuffle them
@@ -98,6 +140,10 @@ public class Game {
         }
     }
 
+    /**
+     * Ends the turn after a player has picked 2 tiles. Call this from the UI and not automatically
+     * after picking the second Tile to give players some time to look at the second card.
+     */
     public synchronized void endTurn() {
         if(state.getValue() == null || tiles.getValue() == null) {
             throw new IllegalStateException("Game is in incorrect state");
@@ -168,9 +214,15 @@ public class Game {
                 break;
             }
         }
+        firstTile = -1;
+        secondTile = -1;
     }
 
-    private void finishGame() throws IllegalStateException {
+    /**
+     * Finishes the game after all tiles have been reveiled.
+     * @throws IllegalStateException
+     */
+    private synchronized void finishGame() throws IllegalStateException {
         if(tiles.getValue() == null) {
             throw new IllegalStateException("Game is in incorrect state");
         }

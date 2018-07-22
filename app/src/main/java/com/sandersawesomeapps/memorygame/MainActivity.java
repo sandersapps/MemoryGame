@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         termsViewModel.getTermsState().observe(this, this::termsChanged);
     }
 
+    /**
+     * Hides and shows the navigation bar based on the terms.
+     * @param state
+     */
     private void termsChanged(TermsState state) {
         switch (state) {
             case ACCEPTED: {

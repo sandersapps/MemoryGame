@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.sandersawesomeapps.memorygame.BaseFragment;
 import com.sandersawesomeapps.memorygame.R;
 import com.sandersawesomeapps.memorygame.data.TermsState;
 import com.sandersawesomeapps.memorygame.data.TermsStateRepository;
@@ -21,6 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+/**
+ * {@link Fragment} which is shown until the {@link TermsState} have been accepted.
+ */
 public class TermsFragment extends Fragment {
 
     private Unbinder unbinder;
@@ -48,6 +52,10 @@ public class TermsFragment extends Fragment {
         termsViewModel = ViewModelProviders.of(this, factory).get(TermsViewModel.class);
     }
 
+    /**
+     * Enables third party services and navigate to the proper {@link BaseFragment}. Because the
+     * backstack is popped any deeplink which landed on the terms will still open the intended page.
+     */
     @OnClick(R.id.agree_button)
     void agreeButton() {
         termsViewModel.setTermsState(TermsState.ACCEPTED);

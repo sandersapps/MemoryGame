@@ -1,16 +1,35 @@
 package com.sandersawesomeapps.memorygame.game;
 
+import com.sandersawesomeapps.memorygame.fragments.game.GridAdapter;
+
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * A tile represents a card. It has a {@link TileState} to track how it should be displayed.
+ */
 public class Tile {
 
+    /**
+     * A unique id which is used for the {@link GridAdapter} to make each Tile unique for ViewHolder
+     * purposes.
+     */
     private String unique;
 
+    /**
+     * The id of the Tile. There's always 2 Tiles with the same id, if the id's match the cards
+     * are considered the same for game purposes.
+     */
     private int id;
 
+    /**
+     * The url of the image.
+     */
     private String url;
 
+    /**
+     * The current state of the Tile.
+     */
     private TileState state;
 
     public Tile(int id, String url, TileState state) {

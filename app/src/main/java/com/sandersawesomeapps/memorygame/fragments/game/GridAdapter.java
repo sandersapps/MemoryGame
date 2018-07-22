@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 
 import com.sandersawesomeapps.memorygame.R;
+import com.sandersawesomeapps.memorygame.fragments.GameFragment;
 import com.sandersawesomeapps.memorygame.game.Difficulty;
+import com.sandersawesomeapps.memorygame.game.Game;
 import com.sandersawesomeapps.memorygame.game.Tile;
-import com.sandersawesomeapps.memorygame.game.TileState;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -20,15 +21,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * An adapter that facilitates show all the {@link Tile} of the {@link Game#getTiles()} in a
+ * {@link RecyclerView}.
+ */
 public class GridAdapter extends ListAdapter<Tile, GridAdapter.TileViewHolder> {
 
+    /**
+     * ClickListener to pass clicks on the {@link TileViewHolder} to the {@link GameFragment}.
+     */
     TileClickListener tileClickListener;
 
-    public GridAdapter() {
+    public GridAdapter(TileClickListener tileClickListener) {
         super(DIFF_CALLBACK);
-    }
-
-    public void setTileClickListener(TileClickListener tileClickListener) {
         this.tileClickListener = tileClickListener;
     }
 
@@ -50,14 +55,12 @@ public class GridAdapter extends ListAdapter<Tile, GridAdapter.TileViewHolder> {
     public static final DiffUtil.ItemCallback<Tile> DIFF_CALLBACK = new DiffUtil.ItemCallback<Tile>() {
         @Override
         public boolean areItemsTheSame(@NonNull Tile oldItem, @NonNull Tile newItem) {
-            boolean result = oldItem.getUnique().equals(newItem.getUnique());
-            return false;
+            return oldItem.getUnique().equals(newItem.getUnique());
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Tile oldItem, @NonNull Tile newItem) {
-            boolean result = oldItem.equals(newItem);
-            return false;
+            return oldItem.equals(newItem);
         }
     };
 
@@ -74,6 +77,10 @@ public class GridAdapter extends ListAdapter<Tile, GridAdapter.TileViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
+        /**
+         * Displays the {@link Tile} based on {@link Tile#getState()}.
+         * @param tile The {@link Tile} that needs to be displayed.
+         */
         public void bind(Tile tile) {
             switch (tile.getState()) {
                 case HIDDEN: {

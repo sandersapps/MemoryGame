@@ -8,11 +8,11 @@
     <string name="fragment_high_scores">High Scores</string>
 
     <string name="state_start">Start a new game</string>
-    <string name="state_player_1_first">Player 1: first flip</string>
-    <string name="state_player_1_second">Player 1: second flip</string>
+    <string name="state_player_1_first">Player 1: first pick</string>
+    <string name="state_player_1_second">Player 1: second pick</string>
     <string name="state_player_1_end">Player 1: end of turn</string>
-    <string name="state_player_2_first">Player 2: first flip</string>
-    <string name="state_player_2_second">Player 2: second flip</string>
+    <string name="state_player_2_first">Player 2: first pick</string>
+    <string name="state_player_2_second">Player 2: second pick</string>
     <string name="state_player_2_end">Player 2: end of turn</string>
     <string name="state_player_1_won">Player 1 won the game</string>
     <string name="state_player_2_won">Player 2 won the game</string>

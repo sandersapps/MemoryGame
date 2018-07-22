@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.google.android.material.button.MaterialButton;
 import com.sandersawesomeapps.memorygame.BaseFragment;
 import com.sandersawesomeapps.memorygame.R;
@@ -21,29 +20,44 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * {@link Fragment} which displays the actual game.
+ */
 public class GameFragment extends BaseFragment implements TileClickListener {
 
     private Unbinder unbinder;
 
     private GameViewModel viewModel;
 
+    /**
+     * Button which is used to go to the next state of the game.
+     */
     @BindView(R.id.game_button)
     MaterialButton gameButton;
 
+    /**
+     * TextView which is used to display the current state of the game.
+     */
     @BindView(R.id.game_state)
     TextView gameStateText;
 
+    /**
+     * Contains all the {@link Tile} of the game.
+     */
     @BindView(R.id.grid)
     RecyclerView grid;
 
+    /**
+     * Adapter to display all the {@link Tile} in the {@link #grid}.
+     */
     GridAdapter adapter;
 
     @Override
@@ -82,6 +96,9 @@ public class GameFragment extends BaseFragment implements TileClickListener {
                     gameButton.setVisibility(View.VISIBLE);
                     gameButton.setText(getString(R.string.game_button_new));
                     gameButton.setOnClickListener(buttonView -> viewModel.startNewGame(Difficulty.MEDIUM));
+
+                    //todo when scores are implemented, save score and go to highscores fragment
+
                     /*
                     gameButton.setVisibility(View.VISIBLE);
                     gameButton.setText(getString(R.string.game_button_finish));
@@ -102,16 +119,20 @@ public class GameFragment extends BaseFragment implements TileClickListener {
         // Build the game grid
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(requireContext(), 4);
         grid.setLayoutManager(layoutManager);
-        adapter = new GridAdapter();
-        adapter.setTileClickListener(this);
+        adapter = new GridAdapter(this);
         viewModel.getTiles().observe(this, this::bindList);
         grid.setAdapter(adapter);
         return view;
     }
 
+    /**
+     * Bind the updated list to the UI.
+     * @param list
+     */
     public void bindList(ArrayList<Tile> list) {
         if(list != null) {
             adapter.submitList(list);
+            // todo figure out why I have to call notifyDataSetChanged(), according to the documentation submitList() should update the changes. Works for now but it's not clean.
             adapter.notifyDataSetChanged();
         }
     }
@@ -122,6 +143,10 @@ public class GameFragment extends BaseFragment implements TileClickListener {
         unbinder.unbind();
     }
 
+    /**
+     * A {@link Tile} has been clicked in the {@link #adapter}.
+     * @param position
+     */
     @Override
     public void onTileClicked(int position) {
         viewModel.tileClick(position);

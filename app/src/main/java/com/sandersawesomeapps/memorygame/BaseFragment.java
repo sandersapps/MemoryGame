@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.sandersawesomeapps.memorygame.data.TermsState;
 import com.sandersawesomeapps.memorygame.data.TermsStateRepository;
+import com.sandersawesomeapps.memorygame.fragments.TermsFragment;
 import com.sandersawesomeapps.memorygame.viewmodels.TermsViewModel;
 
 import androidx.annotation.Nullable;
@@ -20,6 +21,10 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Redirects the user to the {@link TermsFragment} if the terms have not been accepted.
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
